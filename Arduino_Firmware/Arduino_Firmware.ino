@@ -4,6 +4,12 @@
  * Licensed under the MIT License. See the accompanying LICENSE file for terms.
  */
 
+// This will fail to compile if you don't have an nRF52 board.
+// In the future, we might have to open this up to other architectures.
+#if !defined(ARDUINO_ARCH_NRF52) && !defined(ARDUINO_NRF52_ADAFRUIT)
+#error "This firmware only supports boards with an NRF52 processor."
+#endif
+
 // The "standard" ArduinoBLE library seems to be incompatible with the Adafruit
 // nRF52 Feather Express board. Thankfully, Adafruit maintains a library named
 // Bluefruit, which we include here. The documentation is available at:
@@ -12,7 +18,7 @@
 
 // Uncomment this to debug the firmware when the device is connected via USB.
 // Do not forget to comment it out before flashing the final version, or the
-// device will not work when not connected to a computer via USB...
+// device will not work when it is not connected to a computer via USB...
 // #define DEBUG
 
 const BLEUuid SERVICE_UUID("0d389e0f-25dc-4070-9135-400b81e543ce");
@@ -24,10 +30,14 @@ BLEService calibratorService(SERVICE_UUID);
 // Bluetooth® Low Energy Flat Panel Switch Characteristic
 BLECharacteristic calibratorCharacteristic(CHARACTERISTIC_UUID);
 
-const int controlPin = 8;
+const int controlPin = 10;
 
 const uint8_t MIN_BRIGHTNESS = 0;
 const uint8_t MAX_BRIGHTNESS = 255;
+
+const uint32_t LED_TOKEN = 0x004c4544; // LED in ASCII :)
+
+HardwarePWM *pwm = NULL;
 
 void setup() {
 #ifdef DEBUG
@@ -35,7 +45,16 @@ void setup() {
   while (!Serial) ;
 #endif
 
-  pinMode(controlPin, OUTPUT);
+  bool succeeded = configurePinPWM();
+
+  if (!succeeded) {
+    // Light up built-in LED to show that there was a problem...
+    digitalWrite(LED_BUILTIN, HIGH);
+    return;
+  }
+
+  // Initialize brightness (i.e., PWM duty cycle) to 0.
+  setBrightness(MIN_BRIGHTNESS);
 
   Bluefruit.begin();
 
@@ -88,6 +107,61 @@ void setup() {
   }
 }
 
+bool configurePinPWM() {
+  bool succeeded = false;
+
+  // Add pin to one of the available Hw PWM
+
+  // First, use existing HWPWM modules (already owned by LED)
+  for (int i = 0; i < HWPWM_MODULE_NUM; i++) {
+    if (HwPWMx[i]->isOwner(LED_TOKEN) && HwPWMx[i]->addPin(controlPin)) {
+      pwm = HwPWMx[i];
+      succeeded = true;
+      break;
+    }
+  }
+
+  // If we could not add to existing owned PWM modules, try to add to a new PWM module.
+  if (!succeeded) {
+    for (int i = 0; i < HWPWM_MODULE_NUM; i++) {
+      if (HwPWMx[i]->takeOwnership(LED_TOKEN) && HwPWMx[i]->addPin(controlPin)) {
+        pwm = HwPWMx[i];
+        succeeded = true;
+        break;
+      }
+    }
+  }
+
+  if (succeeded) {
+    pinMode(controlPin, OUTPUT);
+
+    // Set PWM frequency:
+    // - Base clock frequency = 1MHz (PWM_PRESCALER_PRESCALER_DIV_16)
+    // - PWM counter max value = 255
+    // Frequency = 1MHz / 255 = ~3.92kHz
+    // We want the frequency to be high enough to not cause any flickering
+    // when taking flats with a short exposure (particularly important with
+    // a luminance filter where a 0.1 second exposure may be used due to the
+    // sensitivity of modern day CMOS cameras) But we also don't want the
+    // frequency to be too high either because the MOSFET capacitance and the
+    // gate resistor will cause issues at low duty cycle values because the
+    // gate voltage will not have enough time to rise to turn the MOSFET on,
+    // so the LED strip will not turn on at all...
+
+    // pwm->setMaxValue(100);
+    // pwm->setClockDiv(PWM_PRESCALER_PRESCALER_DIV_16);
+
+    // 1=16MHz, 2=8MHz, 4=4MHz, 8=2MHz, -> 16=1MHz <-, 32=500kHz, 64=250kHz, 128=125kHz
+    pwm->setClockDiv(PWM_PRESCALER_PRESCALER_DIV_16);
+
+    // We use a BLE byte characteristic, so the resolution must be 8 bits.
+    // This also sets the PWM counter maximum value to 255.
+    pwm->setResolution(8);
+  }
+
+  return succeeded;
+}
+
 void connect_callback(uint16_t conn_handle)
 {
   if (Serial) {
@@ -110,6 +184,11 @@ void connect_callback(uint16_t conn_handle)
 
 void disconnect_callback(uint16_t conn_handle, uint8_t reason)
 {
+  // Reset the value for the characteristic. It does not invoke the write
+  // callback, so we "manually" turn off the LED strip as well... 
+  calibratorCharacteristic.write8(MIN_BRIGHTNESS);
+  setBrightness(MIN_BRIGHTNESS);
+  
   if (Serial) {
     Serial.print("Disconnected, reason = 0x");
     Serial.println(reason, HEX);
@@ -127,7 +206,13 @@ void write_callback(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, ui
   }
 
   // Change brightness of LED strip accordingly...
-  analogWrite(controlPin, value);
+  setBrightness(value);
+}
+
+void setBrightness(uint8_t value)
+{
+  // analogWrite(controlPin, value);
+  pwm->writePin(controlPin, value);
 }
 
 void format_ble_addr(uint8_t* addr, char *s) {
