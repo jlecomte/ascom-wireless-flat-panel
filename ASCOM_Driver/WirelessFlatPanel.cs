@@ -44,7 +44,7 @@ namespace ASCOM.DarkSkyGeek
         /// <summary>
         /// Driver description that displays in the ASCOM Chooser.
         /// </summary>
-        private static string deviceName = "DarkSkyGeek’s ASCOM Wireless Flat Panel";
+        private static string deviceName = "DarkSkyGeek’s Wireless Flat Panel";
 
         // Constants used for Profile persistence
         private const string traceStateProfileName = "Trace Level";
