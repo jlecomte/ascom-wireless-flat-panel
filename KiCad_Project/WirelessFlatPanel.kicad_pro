@@ -372,9 +372,7 @@
     "meta": {
       "version": 2
     },
-    "net_colors": {
-      "Net-(BAR1-Pad16)": "rgb(251, 255, 147)"
-    }
+    "net_colors": null
   },
   "pcbnew": {
     "last_paths": {
