@@ -49,15 +49,15 @@ const uint32_t LED_TOKEN = 0x004c4544; // LED in ASCII :)
 HardwarePWM *pwm = NULL;
 
 void setup() {
-  pinMode(VBATLED1, OUTPUT);
-  pinMode(VBATLED2, OUTPUT);
-  pinMode(VBATLED3, OUTPUT);
-  pinMode(VBATLED4, OUTPUT);
-
 #ifdef DEBUG
   Serial.begin(9600);
   while (!Serial) ;
 #endif
+
+  pinMode(VBATLED1, OUTPUT);
+  pinMode(VBATLED2, OUTPUT);
+  pinMode(VBATLED3, OUTPUT);
+  pinMode(VBATLED4, OUTPUT);
 
   bool succeeded = configurePinPWM();
 
@@ -199,10 +199,10 @@ void connect_callback(uint16_t conn_handle)
 void disconnect_callback(uint16_t conn_handle, uint8_t reason)
 {
   // Reset the value for the characteristic. It does not invoke the write
-  // callback, so we "manually" turn off the LED strip as well... 
+  // callback, so we "manually" turn off the LED strip as well...
   calibratorCharacteristic.write8(MIN_BRIGHTNESS);
   setBrightness(MIN_BRIGHTNESS);
-  
+
   if (Serial) {
     Serial.print("Disconnected, reason = 0x");
     Serial.println(reason, HEX);
