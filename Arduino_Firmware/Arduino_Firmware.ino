@@ -30,7 +30,16 @@ BLEService calibratorService(SERVICE_UUID);
 // Bluetooth® Low Energy Flat Panel Switch Characteristic
 BLECharacteristic calibratorCharacteristic(CHARACTERISTIC_UUID);
 
-const int controlPin = 10;
+#define VBATPIN A6
+
+// Voltage indicator LED pins
+#define VBATLED1 9
+#define VBATLED2 10
+#define VBATLED3 11
+#define VBATLED4 12
+
+// Pin controlling the intensity of the flat pane
+#define LED_CONTROL_PIN 13
 
 const uint8_t MIN_BRIGHTNESS = 0;
 const uint8_t MAX_BRIGHTNESS = 255;
@@ -40,6 +49,11 @@ const uint32_t LED_TOKEN = 0x004c4544; // LED in ASCII :)
 HardwarePWM *pwm = NULL;
 
 void setup() {
+  pinMode(VBATLED1, OUTPUT);
+  pinMode(VBATLED2, OUTPUT);
+  pinMode(VBATLED3, OUTPUT);
+  pinMode(VBATLED4, OUTPUT);
+
 #ifdef DEBUG
   Serial.begin(9600);
   while (!Serial) ;
@@ -114,7 +128,7 @@ bool configurePinPWM() {
 
   // First, use existing HWPWM modules (already owned by LED)
   for (int i = 0; i < HWPWM_MODULE_NUM; i++) {
-    if (HwPWMx[i]->isOwner(LED_TOKEN) && HwPWMx[i]->addPin(controlPin)) {
+    if (HwPWMx[i]->isOwner(LED_TOKEN) && HwPWMx[i]->addPin(LED_CONTROL_PIN)) {
       pwm = HwPWMx[i];
       succeeded = true;
       break;
@@ -124,7 +138,7 @@ bool configurePinPWM() {
   // If we could not add to existing owned PWM modules, try to add to a new PWM module.
   if (!succeeded) {
     for (int i = 0; i < HWPWM_MODULE_NUM; i++) {
-      if (HwPWMx[i]->takeOwnership(LED_TOKEN) && HwPWMx[i]->addPin(controlPin)) {
+      if (HwPWMx[i]->takeOwnership(LED_TOKEN) && HwPWMx[i]->addPin(LED_CONTROL_PIN)) {
         pwm = HwPWMx[i];
         succeeded = true;
         break;
@@ -133,7 +147,7 @@ bool configurePinPWM() {
   }
 
   if (succeeded) {
-    pinMode(controlPin, OUTPUT);
+    pinMode(LED_CONTROL_PIN, OUTPUT);
 
     // Set PWM frequency:
     // - Base clock frequency = 1MHz (PWM_PRESCALER_PRESCALER_DIV_16)
@@ -211,14 +225,29 @@ void write_callback(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, ui
 
 void setBrightness(uint8_t value)
 {
-  // analogWrite(controlPin, value);
-  pwm->writePin(controlPin, value);
+  pwm->writePin(LED_CONTROL_PIN, value);
 }
 
-void format_ble_addr(uint8_t* addr, char *s) {
+void format_ble_addr(uint8_t* addr, char *s)
+{
   for (int i = 0; i < BLE_GAP_ADDR_LEN; i++) {
     sprintf(&s[i*5], "0x%02X%s", addr[i], i < BLE_GAP_ADDR_LEN - 1 ? " " : "");
   }
 }
 
-void loop() {}
+void loop()
+{
+  // Code snippet from Adafruit website to measure the battery voltage
+  float measuredvbat = analogRead(VBATPIN);
+  measuredvbat *= 2;    // we divided by 2, so multiply back
+  measuredvbat *= 3.6;  // Multiply by 3.6V, our reference voltage
+  measuredvbat /= 1024; // convert to voltage
+
+  // Update our battery voltage indicator LEDs:
+  digitalWrite(VBATLED1, measuredvbat > 3.2 ? HIGH : LOW);
+  digitalWrite(VBATLED2, measuredvbat > 3.4 ? HIGH : LOW);
+  digitalWrite(VBATLED3, measuredvbat > 3.6 ? HIGH : LOW);
+  digitalWrite(VBATLED4, measuredvbat > 3.8 ? HIGH : LOW);
+
+  delay(1000);
+}
