@@ -46,7 +46,7 @@ namespace ASCOM.DarkSkyGeek
             this.cmdOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.cmdOK.Image = global::ASCOM.DarkSkyGeek.Properties.Resources.icon_ok_24;
-            this.cmdOK.Location = new System.Drawing.Point(224, 327);
+            this.cmdOK.Location = new System.Drawing.Point(241, 327);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(59, 36);
             this.cmdOK.TabIndex = 0;
@@ -58,7 +58,7 @@ namespace ASCOM.DarkSkyGeek
             this.cmdCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancel.Image = global::ASCOM.DarkSkyGeek.Properties.Resources.icon_cancel_24;
-            this.cmdCancel.Location = new System.Drawing.Point(289, 327);
+            this.cmdCancel.Location = new System.Drawing.Point(306, 327);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(59, 36);
             this.cmdCancel.TabIndex = 1;
@@ -94,7 +94,7 @@ namespace ASCOM.DarkSkyGeek
             | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionLabel.Location = new System.Drawing.Point(107, 12);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(241, 88);
+            this.descriptionLabel.Size = new System.Drawing.Size(258, 88);
             this.descriptionLabel.TabIndex = 8;
             this.descriptionLabel.Text = "This driver wirelessly sends commands to the flat panel, which is a Bluetooth© Lo" +
     "w Energy (BLE) device. Please, ensure that your device is powered up before atte" +
@@ -129,7 +129,7 @@ namespace ASCOM.DarkSkyGeek
             this.compatDevicesLbl.Name = "compatDevicesLbl";
             this.compatDevicesLbl.Size = new System.Drawing.Size(233, 13);
             this.compatDevicesLbl.TabIndex = 12;
-            this.compatDevicesLbl.Text = "Bluetooth address of nearby spectral calibrators:";
+            this.compatDevicesLbl.Text = "Bluetooth address of nearby wireless flat panels:";
             // 
             // deviceSelectionBtn
             // 
@@ -139,7 +139,7 @@ namespace ASCOM.DarkSkyGeek
             this.deviceSelectionBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deviceSelectionBtn.Location = new System.Drawing.Point(15, 280);
             this.deviceSelectionBtn.Name = "deviceSelectionBtn";
-            this.deviceSelectionBtn.Size = new System.Drawing.Size(333, 30);
+            this.deviceSelectionBtn.Size = new System.Drawing.Size(350, 30);
             this.deviceSelectionBtn.TabIndex = 14;
             this.deviceSelectionBtn.Text = "Pair with selected device";
             this.deviceSelectionBtn.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@ namespace ASCOM.DarkSkyGeek
             this.devicesListBox.FormattingEnabled = true;
             this.devicesListBox.Location = new System.Drawing.Point(15, 175);
             this.devicesListBox.Name = "devicesListBox";
-            this.devicesListBox.Size = new System.Drawing.Size(333, 95);
+            this.devicesListBox.Size = new System.Drawing.Size(350, 95);
             this.devicesListBox.TabIndex = 15;
             this.devicesListBox.SelectedIndexChanged += new System.EventHandler(this.devicesListBox_SelectedIndexChanged);
             // 
@@ -160,7 +160,7 @@ namespace ASCOM.DarkSkyGeek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 371);
+            this.ClientSize = new System.Drawing.Size(375, 371);
             this.Controls.Add(this.devicesListBox);
             this.Controls.Add(this.deviceSelectionBtn);
             this.Controls.Add(this.compatDevicesLbl);
