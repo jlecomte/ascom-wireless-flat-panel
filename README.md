@@ -136,6 +136,13 @@ I included a [KiCad](https://www.kicad.org/) project in the `KiCad_Project/` dir
 
 ![Electronic Circuit Schematics](images/Electronics_Schematics.png)
 
+The values of the resistors R1-R4 depend on the specific colored LEDs you are using. In my case, in order to have all the colored LEDs emit roughly the same brightness, I settled on the following values. You will have to experiment a bit to find out which values work best for you.
+
+* `R1`: 2kΩ
+* `R2`: 5kΩ
+* `R3`: 1kΩ
+* `R4`: 2kΩ
+
 ### Breadboard Prototyping
 
 It is critical to prototype this circuit on a breadboard before ordering a PCB, or soldering the components on a perforated board. Here is what my prototype looked like:
@@ -157,6 +164,10 @@ And here is a rendering of the various PCB layers:
 ![Copper traces layout](images/PCB-routing.png)
 
 Using KiCad, you can export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer (I used PCBWay)
+
+Here is a photograph of the completed board, after soldering all the components:
+
+![Completed board with components soldered](images/Real-PCB.jpg)
 
 ## Assembling The Flat Panel
 
