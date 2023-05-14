@@ -152,6 +152,10 @@ Here are 3D renderings of the PCB:
 
 ![Electronic Circuit Rendering 3D](images/PCB-3d.png)
 
+And here is a rendering of the various PCB layers:
+
+![Copper traces layout](images/PCB-routing.png)
+
 Using KiCad, you can export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer (I used PCBWay)
 
 ## Assembling The Flat Panel
