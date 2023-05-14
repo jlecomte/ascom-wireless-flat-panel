@@ -62,7 +62,7 @@ namespace ASCOM.DarkSkyGeek
         public static Guid BLE_CHARACTERISTIC_UUID = new Guid("2a0f87c9-7270-4c3e-aaa3-647961dfffa3");
 
         private const int MIN_BRIGHTNESS = 0;
-        private const int MAX_BRIGHTNESS = 255;
+        private const int MAX_BRIGHTNESS = 1023;
 
         /// <summary>
         /// Private variable to hold the connected state
@@ -87,7 +87,7 @@ namespace ASCOM.DarkSkyGeek
         /// <summary>
         /// Variable to hold the current brightness of the device.
         /// </summary>
-        private byte brightness = MIN_BRIGHTNESS;
+        private UInt16 brightness = MIN_BRIGHTNESS;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DarkSkyGeek"/> class.
@@ -428,7 +428,7 @@ namespace ASCOM.DarkSkyGeek
                 throw new ASCOM.InvalidValueException("Invalid brightness value", Brightness.ToString(), "[0, " + MAX_BRIGHTNESS.ToString() + "]");
             }
 
-            byte value = (byte) Brightness;
+            UInt16 value = (UInt16) Brightness;
 
             CheckConnected("CalibratorOn");
             tl.LogMessage("CalibratorOn", "Sending request to device...");
@@ -625,9 +625,9 @@ namespace ASCOM.DarkSkyGeek
         {
             tl.LogMessage("QueryDeviceState", "Reading BLE characteristic value...");
             GattReadResult result = await bleCharacteristic.ReadValueAsync(BluetoothCacheMode.Uncached);
-            if (result.Status == GattCommunicationStatus.Success && result.Value.Length == 1)
+            if (result.Status == GattCommunicationStatus.Success && result.Value.Length == 2)
             {
-                return DataReader.FromBuffer(result.Value).ReadByte();
+                return DataReader.FromBuffer(result.Value).ReadUInt16();
             }
 
             return -1;
@@ -636,10 +636,12 @@ namespace ASCOM.DarkSkyGeek
         /// <summary>
         /// Writes the specified value to the BLE characteristic.
         /// </summary>
-        private async Task<bool> UpdateDeviceState(byte brightness)
+        private async Task<bool> UpdateDeviceState(UInt16 brightness)
         {
             tl.LogMessage("UpdateDeviceState", "Writing BLE characteristic value...");
-            GattCommunicationStatus result = await bleCharacteristic.WriteValueAsync((new byte[] { brightness }).AsBuffer());
+            var writer = new DataWriter();
+            writer.WriteUInt16(brightness);
+            GattCommunicationStatus result = await bleCharacteristic.WriteValueAsync(writer.DetachBuffer());
             return result == GattCommunicationStatus.Success;
         }
 

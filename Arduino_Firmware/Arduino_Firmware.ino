@@ -41,8 +41,8 @@ BLECharacteristic calibratorCharacteristic(CHARACTERISTIC_UUID);
 // Pin controlling the intensity of the flat pane
 #define LED_CONTROL_PIN 13
 
-const uint8_t MIN_BRIGHTNESS = 0;
-const uint8_t MAX_BRIGHTNESS = 255;
+const uint16_t MIN_BRIGHTNESS = 0;
+const uint16_t MAX_BRIGHTNESS = 1023;
 
 const uint32_t LED_TOKEN = 0x004c4544; // LED in ASCII :)
 
@@ -86,11 +86,11 @@ void setup() {
   // that had it's `.begin()` function called.
   calibratorCharacteristic.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
   calibratorCharacteristic.setPermission(SECMODE_OPEN, SECMODE_OPEN);
-  calibratorCharacteristic.setFixedLen(1);
+  calibratorCharacteristic.setFixedLen(2);
   calibratorCharacteristic.setWriteCallback(write_callback);
   calibratorCharacteristic.begin();
-  // Set the initial value for the characeristic:
-  calibratorCharacteristic.write8(MIN_BRIGHTNESS);
+  // Set the initial value for the characteristic:
+  calibratorCharacteristic.write16(MIN_BRIGHTNESS);
 
   // Advertise device name in secondary scan response packet (optional)
   // (there is no room for 'Name' in advertising packet)
@@ -150,9 +150,9 @@ bool configurePinPWM() {
     pinMode(LED_CONTROL_PIN, OUTPUT);
 
     // Set PWM frequency:
-    // - Base clock frequency = 1MHz (PWM_PRESCALER_PRESCALER_DIV_16)
-    // - PWM counter max value = 255
-    // Frequency = 1MHz / 255 = ~3.92kHz
+    // - Base clock frequency = 8MHz (PWM_PRESCALER_PRESCALER_DIV_2)
+    // - PWM counter max value = 1024
+    // Frequency = 8MHz / 1024 = ~3.92kHz
     // We want the frequency to be high enough to not cause any flickering
     // when taking flats with a short exposure (particularly important with
     // a luminance filter where a 0.1 second exposure may be used due to the
@@ -162,15 +162,12 @@ bool configurePinPWM() {
     // gate voltage will not have enough time to rise to turn the MOSFET on,
     // so the LED strip will not turn on at all...
 
-    // pwm->setMaxValue(100);
-    // pwm->setClockDiv(PWM_PRESCALER_PRESCALER_DIV_16);
+    // 1=16MHz, -> 2=8MHz <-, 4=4MHz, 8=2MHz, 16=1MHz, 32=500kHz, 64=250kHz, 128=125kHz
+    pwm->setClockDiv(PWM_PRESCALER_PRESCALER_DIV_2);
 
-    // 1=16MHz, 2=8MHz, 4=4MHz, 8=2MHz, -> 16=1MHz <-, 32=500kHz, 64=250kHz, 128=125kHz
-    pwm->setClockDiv(PWM_PRESCALER_PRESCALER_DIV_16);
-
-    // We use a BLE byte characteristic, so the resolution must be 8 bits.
-    // This also sets the PWM counter maximum value to 255.
-    pwm->setResolution(8);
+    // Set the resolution to 10 bits since the max value is 1023 (2^10-1)
+    // This calls pwm->setMaxValue(1023), thereby setting the PWM counter maximum value to 1023.
+    pwm->setResolution(10);
   }
 
   return succeeded;
@@ -200,7 +197,7 @@ void disconnect_callback(uint16_t conn_handle, uint8_t reason)
 {
   // Reset the value for the characteristic. It does not invoke the write
   // callback, so we "manually" turn off the LED strip as well...
-  calibratorCharacteristic.write8(MIN_BRIGHTNESS);
+  calibratorCharacteristic.write16(MIN_BRIGHTNESS);
   setBrightness(MIN_BRIGHTNESS);
 
   if (Serial) {
@@ -212,7 +209,14 @@ void disconnect_callback(uint16_t conn_handle, uint8_t reason)
 
 void write_callback(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len)
 {
-  uint8_t value = data[0];
+  if (Serial) {
+    Serial.print("data[0] = ");
+    Serial.println(data[0]);
+    Serial.print("data[1] = ");
+    Serial.println(data[1]);
+  }
+
+  uint16_t value = (data[0] << 8) + data[1];
 
   if (Serial) {
     Serial.print("Received value: ");
@@ -223,7 +227,7 @@ void write_callback(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, ui
   setBrightness(value);
 }
 
-void setBrightness(uint8_t value)
+void setBrightness(uint16_t value)
 {
   pwm->writePin(LED_CONTROL_PIN, value);
 }
