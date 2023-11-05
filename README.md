@@ -153,15 +153,15 @@ It is critical to prototype this circuit on a breadboard before ordering a PCB, 
 
 Here are 3D renderings of the PCB:
 
-![Electronic Circuit Rendering Front](images/PCB-front.png)
+![Electronic Circuit Rendering Front](images/PCB-front.jpg)
 
-![Electronic Circuit Rendering Back](images/PCB-back.png)
+![Electronic Circuit Rendering Back](images/PCB-back.jpg)
 
-![Electronic Circuit Rendering 3D](images/PCB-3d.png)
+![Electronic Circuit Rendering 3D](images/PCB-3D.jpg)
 
 And here is a rendering of the various PCB layers:
 
-![Copper traces layout](images/PCB-routing.png)
+![Copper traces layout](images/PCB-routing.jpg)
 
 Using KiCad, you can export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer (I used PCBWay)
 
