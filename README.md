@@ -2,6 +2,7 @@
 
 * [Introduction](#introduction)
 * [Finished Product](#finished-product)
+* [Introduction Video](#introduction-video)
 * [Pre-Requisites](#pre-requisites)
 * [Hardware](#hardware)
 * [ASCOM Driver](#ascom-driver)
@@ -17,10 +18,11 @@
   + [Breadboard Prototyping](#breadboard-prototyping)
   + [PCB](#pcb)
 * [Assembling The Flat Panel](#assembling-the-flat-panel)
+* [Using The Flat Panel With NINA](#using-the-flat-panel-with-nina)
 
 ## Introduction
 
-This project is the second iteration of my original DIY [ASCOM-compatible flat panel](https://github.com/jlecomte/ascom-flat-panel). It brings a major usability improvement over the first version: It is completely wireless! (whereas the first version relied on a USB type C and a 12V DC cable...) which makes it even easier to use, especially in the dark and at a remote dark site.
+This project is the second iteration of my original DIY [ASCOM-compatible flat panel](https://github.com/jlecomte/ascom-flat-panel). It brings a major usability improvement over the first version: It is completely wireless! (whereas the first version relied on a USB type C and a 12V DC cable...) which makes it even easier to use, especially in the dark!
 
 **Note:** I am not interested in consolidating this project with my DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover) because, in my case, it would add too much weight to the front of my already front-heavy OTA, making it more difficult to balance, and causing all kinds of issues with the camera possibly hitting the tripod legs since the OTA would have to be moved back to provide proper balance. If you have a fully remote setup, and balance is an issue (it often is with long triplet refractors...), I recommend using a large and affordable LED tracing panel, which you can easily find on Amazon. Modify it to be ASCOM-compatible (see [this CloudyNights article](https://www.cloudynights.com/topic/536533-diy-alnitak-flat-panel/)), and position it vertically. Then, simply slew the telescope to it (the telescope will be in a horizontal position). Most modern Go-To mounts support storing several custom positions, so that makes it even easier! The only way to integrate a flat panel with an automated telescope cover would be to use an electroluminescent panel, which is a lot lighter and thinner. But you will likely not find one that is exactly the size of your OTA (unless you are lucky). Anyway, you have options...
 
@@ -28,15 +30,19 @@ This project is the second iteration of my original DIY [ASCOM-compatible flat p
 
 TBD
 
+## Introduction Video
+
+TBD
+
 ## Pre-Requisites
 
 * A Windows computer (Windows 10 or newer)
-* [Microsoft Visual Studio](https://visualstudio.microsoft.com/) (FYI, I used the 2022 edition...)
+* [Microsoft Visual Studio](https://visualstudio.microsoft.com/)
 * [ASCOM Platform](https://ascom-standards.org/)
 * [ASCOM Platform Developer Components](https://ascom-standards.org/COMDeveloper/Index.htm)
 * [Arduino IDE](https://www.arduino.cc/en/software)
-* [FreeCAD](https://www.freecadweb.org/), a free and open-source 3D parametric modeler
-* A 3D printer and a slicer (I use a Creality Ender 3 v2, and Ultimaker Cura)
+* [FreeCAD](https://www.freecadweb.org/), a free and open-source 3D parametric modeler. Make sure that you have the latest version installed!
+* A 3D printer and a slicer (I use a Creality Ender 3 S1 Plus, and Ultimaker Cura)
 * A few basic tools that any tinkerer must own, such as a breadboard, a soldering iron, etc.
 
 ## Hardware
@@ -45,15 +51,19 @@ TBD
 * [Natural white 5V LED strip](https://www.amazon.com/dp/B08H51D8QV)
 * [Solderless LED strip connectors](https://www.amazon.com/dp/B0BLCQXSXH)
 * [FQP30N06L](https://www.amazon.com/dp/B07WHSD3GJ) (logic-level MOSFET)
-* [Resistors](https://www.amazon.com/dp/B08FD1XVL6)
-* [LEDs](https://www.amazon.com/dp/B09XDMJ6KY)
-* [Small LiPo battery](https://www.amazon.com/dp/B09DPNCLQZ)
-* [Bench Power Supply](https://www.amazon.com/dp/B07GCJ5QHF)
-* [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) (to extract the background disk and the Light Guiding Plate, aka LGP)
-* [White Acrylic Sheet](https://www.amazon.com/dp/B083XQ2QS7) (to make the diffuser)
+* An assortment of 1/4W resistors ([example](https://www.amazon.com/dp/B08FD1XVL6))
+* An assortment of colored 5mm LEDs ([example](https://www.amazon.com/dp/B09XDMJ6KY))
+* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful! See note below...
+* [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) — We will extract the background disk and the Light Guiding Plate, aka LGP, from it...
+* [White Acrylic Sheet](https://www.amazon.com/dp/B083XQ2QS7)
 * [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS)
 * [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q)
 * [22AWG solid core electrical wires](https://www.amazon.com/dp/B088KQFHV7)
+
+The following items are technically optional, but highly recommended:
+
+* [Bench Power Supply](https://www.amazon.com/dp/B07GCJ5QHF)
+* [Solderless Breadboard](https://www.amazon.com/gp/product/B07LG9V8WQ)
 
 **Important note about the LED strip:** Pick a "natural white" LED strip. Stay away from "warm white" because you will run into some problems with your OIII filter (it does not emit enough in the blue part of the spectrum) or "cool white" because you will have similar issues, but with the H⍺ or SII filters (it does not emit enough in the red part of the spectrum). Also, stay away from so-called "high density" LED strips, they are simply too bright for our application. And finally, note that most LED strips require 12V DC, but in this project, we need one that can be powered with 5V DC. Actually, we are going to power the LED strip using 3.3V DC so that it is not too bright for our application.
 
@@ -126,7 +136,7 @@ The firmware was written specifically for, and tested with, an Adafruit Feather 
 
 ## Mechanical Components
 
-The STL files you will find in the `3D_Files/STL/` folder are just a starting point. You will likely have to create your own version of this project, if only to match the size of the panel to your own OTA... That is why I included the FreeCAD model in this repository (`3D_Files/Freecad_Model.FCStd`). Since there are no moving parts, it is a relatively simple assembly.
+In the [`3D_Files/STL/`](3D_Files/STL/) folder, you will find STL files for a variety of telescopes. If you provide me with the thickness and outer diameter of your OTA (the dew shield in the case of a refractor), I can generate STL files for your own telescope and add them to that folder. Otherwise, you can use the FreeCAD model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)). Simply open the file in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will then be able to export your own STL files.
 
 ## Electronic Circuit
 
@@ -163,12 +173,16 @@ And here is a rendering of the various PCB layers:
 
 ![Copper traces layout](images/PCB-routing.jpg)
 
-Using KiCad, you can export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer (I used PCBWay)
+I exported the Gerber files so that you can have the board manufactured by PCBWay (download the Gerber files [here](KiCad_Project/PCBWay.zip)). If you want to work with another PCB manufacturer, you will need to open the KiCad project and export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer. They all have slightly different requirements...
 
 Here is a photograph of the completed board, after soldering all the components:
 
 ![Completed board with components soldered](images/Real-PCB.jpg)
 
 ## Assembling The Flat Panel
+
+TBD
+
+## Using The Flat Panel With NINA
 
 TBD
