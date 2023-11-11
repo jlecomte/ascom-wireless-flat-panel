@@ -5,6 +5,7 @@
 * [Introduction Video](#introduction-video)
 * [Pre-Requisites](#pre-requisites)
 * [Hardware](#hardware)
+* [Bill Of Material](#bill-of-material)
 * [ASCOM Driver](#ascom-driver)
   + [Downloading And Installing The Driver](#downloading-and-installing-the-driver)
   + [Compiling The Driver (For Developers Only)](#compiling-the-driver-for-developers-only)
@@ -53,9 +54,8 @@ TBD
 * [FQP30N06L](https://www.amazon.com/dp/B07WHSD3GJ) (logic-level MOSFET)
 * An assortment of 1/4W resistors ([example](https://www.amazon.com/dp/B08FD1XVL6))
 * An assortment of colored 5mm LEDs ([example](https://www.amazon.com/dp/B09XDMJ6KY))
-* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful! See note below...
-* [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) — We will extract the background disk and the Light Guiding Plate, aka LGP, from it...
-* [White Acrylic Sheet](https://www.amazon.com/dp/B083XQ2QS7)
+* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather! See note below...
+* [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) — We will take it apart to extract its background disk, Light Guiding Plate (LGP), and diffuser.
 * [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS)
 * [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q)
 * [22AWG solid core electrical wires](https://www.amazon.com/dp/B088KQFHV7)
@@ -68,6 +68,21 @@ The following items are technically optional, but highly recommended:
 **Important note about the LED strip:** Pick a "natural white" LED strip. Stay away from "warm white" because you will run into some problems with your OIII filter (it does not emit enough in the blue part of the spectrum) or "cool white" because you will have similar issues, but with the H⍺ or SII filters (it does not emit enough in the red part of the spectrum). Also, stay away from so-called "high density" LED strips, they are simply too bright for our application. And finally, note that most LED strips require 12V DC, but in this project, we need one that can be powered with 5V DC. Actually, we are going to power the LED strip using 3.3V DC so that it is not too bright for our application.
 
 **Important note about the LiPo battery:** Do _not_ connect the LiPo battery directly to the microcontroller board via the JST connector, unless you are certain about the battery's connector polarity. See the warning documented on [this Adafruit documentation page](https://learn.adafruit.com/introducing-the-adafruit-nrf52840-feather/power-management-2).
+
+## Bill Of Material
+
+Assuming that you already have a 3D printer, some basic equipment (e.g., a soldering iron), and some basic hardware and electronic components (an assortment of resistor and colored LEDs can be obtained in bulk and reused for a variety of projects - same for metric nuts and bolts and threaded inserts), here is the bill of materials (BOM) for this project (all prices are in USD and accurate as of December 2023):
+
+* Adafruit Feather nRF52840 Express: $25
+* LED strip: $11
+* Solderless LED strip connectors: $14
+* MOSFET: $9
+* LiPo battery: $12
+* Taloya ceiling light: $14
+
+Total cost ~ **$85**
+
+While this isn't cheap, it is significantly more affordable than a commercial unit. For reference, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. This should help you determine whether this project is worth the effort.
 
 ## ASCOM Driver
 
