@@ -71,18 +71,18 @@ The following items are technically optional, but highly recommended:
 
 ## Bill Of Material
 
-Assuming that you already have a 3D printer, some basic equipment (e.g., a soldering iron), and some basic hardware and electronic components (an assortment of resistor and colored LEDs can be obtained in bulk and reused for a variety of projects - same for metric nuts and bolts and threaded inserts), here is the bill of materials (BOM) for this project (all prices are in USD and accurate as of December 2023):
+Assuming that you already own a 3D printer, some basic equipment (e.g., a soldering iron), and some basic hardware and electronic components (an assortment of resistors and colored LEDs can be purchased in bulk and reused for a variety of projects — same for metric nuts and bolts or threaded inserts), here is the bill of materials (BOM) for this project (all prices are in USD and accurate as of January 2024):
 
-* Adafruit Feather nRF52840 Express: $25
-* LED strip: $11
-* Solderless LED strip connectors: $14
-* MOSFET: $9
-* LiPo battery: $12
-* Taloya ceiling light: $14
+* Adafruit Feather nRF52840 Express: **$25**
+* LED strip: **$11**
+* Solderless LED strip connectors: **$14**
+* MOSFET: **$9**
+* LiPo battery: **$12**
+* Taloya ceiling light: **$14**
 
-Total cost ~ **$85**
+**Total cost ~ $85**
 
-While this isn't cheap, it is significantly more affordable than a commercial unit. For reference, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. This should help you determine whether this project is worth the effort.
+While this isn't cheap, it is significantly more affordable than a commercial unit. For example, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. This should help you decide whether this project is worth the effort.
 
 ## ASCOM Driver
 
