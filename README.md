@@ -79,8 +79,9 @@ Assuming that you already own a 3D printer, some basic equipment (e.g., a solder
 * MOSFET: **$9**
 * LiPo battery: **$12**
 * Taloya ceiling light: **$14**
+* PCB manufacturing + shipping: **$15**
 
-**Total cost ~ $85**
+**Total cost ~ $100**
 
 While this isn't cheap, it is significantly more affordable than a commercial unit. For example, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. This should help you decide whether this project is worth the effort.
 
@@ -190,9 +191,13 @@ And here is a rendering of the various PCB layers:
 
 I exported the Gerber files so that you can have the board manufactured by PCBWay (download the Gerber files [here](KiCad_Project/PCBWay.zip)). If you want to work with another PCB manufacturer, you will need to open the KiCad project and export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer. They all have slightly different requirements...
 
-Here is a photograph of the completed board, after soldering all the components:
+Here is a photograph of the control box, which hosts the PCB, after soldering all the components. Note how the switch has been wired.
 
-![Completed board with components soldered](images/Real-PCB.jpg)
+![Control box hosting the completed board with components soldered](images/control-box-2.jpg)
+
+The battery indicator LEDs protrude slightly on the other side of the control box:
+
+![Control box showing the protruding battery indicator LEDs](images/control-box-1.jpg)
 
 ## Assembling The Flat Panel
 
