@@ -251,7 +251,7 @@ All you have left to do is to fasten the flat panel using M3 bolts, washers, and
 
 **Answer:** Nope. Not interested.
 
-**Question:** Can you create a version of this project that incorporates your DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover)?
+**Question:** Can you incorporate your DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover) into this project?
 
 **Answer:** I am not interested in consolidating this project with my DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover) because, in my case, it would add too much weight to the front of my already front-heavy OTA, making it more difficult to balance, and causing all kinds of issues with the camera possibly hitting the tripod legs since the OTA would have to be moved back to provide proper balance. If you have a fully remote setup, and balance is an issue (it often is with long triplet refractors...), I recommend using a large and affordable LED tracing panel, which you can easily find on Amazon. Modify it to be ASCOM-compatible (see [this CloudyNights article](https://www.cloudynights.com/topic/536533-diy-alnitak-flat-panel/)), and position it vertically. Then, simply slew the telescope to it (the telescope will be in a horizontal position). Most modern Go-To mounts support storing several custom positions, so that makes it even easier! The only way to integrate a flat panel with an automated telescope cover would be to use an electroluminescent panel, which is a lot lighter and thinner. But you will likely not find one that is exactly the size of your OTA (unless you are lucky). Anyway, you have options...
 
