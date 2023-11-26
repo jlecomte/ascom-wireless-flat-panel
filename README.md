@@ -19,7 +19,6 @@
   + [Breadboard Prototyping](#breadboard-prototyping)
   + [PCB](#pcb)
 * [Assembling The Flat Panel](#assembling-the-flat-panel)
-* [Using The Flat Panel With NINA](#using-the-flat-panel-with-nina)
 
 ## Introduction
 
@@ -29,7 +28,9 @@ This project is the second iteration of my original DIY [ASCOM-compatible flat p
 
 ## Finished Product
 
-TBD
+![Finished product: top of the wireless flat panel](images/finished-product-1.jpg)
+
+![Finished product: bottom of the wireless flat panel](images/finished-product-2.jpg)
 
 ## Introduction Video
 
@@ -50,20 +51,20 @@ TBD
 
 * [Adafruit Feather nRF52840 Express](https://www.adafruit.com/product/4062)
 * [Natural white 5V LED strip](https://www.amazon.com/dp/B08H51D8QV)
-* [Solderless LED strip connectors](https://www.amazon.com/dp/B0BLCQXSXH)
 * [FQP30N06L](https://www.amazon.com/dp/B07WHSD3GJ) (logic-level MOSFET)
 * An assortment of 1/4W resistors ([example](https://www.amazon.com/dp/B08FD1XVL6))
 * An assortment of colored 5mm LEDs ([example](https://www.amazon.com/dp/B09XDMJ6KY))
-* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather! See note below...
+* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather board! See note below...
 * [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) — We will take it apart to extract its background disk, Light Guiding Plate (LGP), and diffuser.
+* [3mm thick white acrylic sheet](https://www.amazon.com/dp/B083XQ2QS7) — We will use that to make the internal diffuser.
 * [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS)
 * [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q)
-* [22AWG solid core electrical wires](https://www.amazon.com/dp/B088KQFHV7)
 
 The following items are technically optional, but highly recommended:
 
 * [Bench Power Supply](https://www.amazon.com/dp/B07GCJ5QHF)
 * [Solderless Breadboard](https://www.amazon.com/gp/product/B07LG9V8WQ)
+* [Solderless LED strip connectors](https://www.amazon.com/dp/B0BLCQXSXH) — Useful for testing, but cannot be used in the finished product without making changes to the 3D model.
 
 **Important note about the LED strip:** Pick a "natural white" LED strip. Stay away from "warm white" because you will run into some problems with your OIII filter (it does not emit enough in the blue part of the spectrum) or "cool white" because you will have similar issues, but with the H⍺ or SII filters (it does not emit enough in the red part of the spectrum). Also, stay away from so-called "high density" LED strips, they are simply too bright for our application. And finally, note that most LED strips require 12V DC, but in this project, we need one that can be powered with 5V DC. Actually, we are going to power the LED strip using 3.3V DC so that it is not too bright for our application.
 
@@ -75,15 +76,15 @@ Assuming that you already own a 3D printer, some basic equipment (e.g., a solder
 
 * Adafruit Feather nRF52840 Express: **$25**
 * LED strip: **$11**
-* Solderless LED strip connectors: **$14**
-* MOSFET: **$9**
+* MOSFET: $10 for a pack of 10, so we will only count **$1** for this item in the BOM cost.
 * LiPo battery: **$12**
 * Taloya ceiling light: **$14**
-* PCB manufacturing + shipping: **$15**
+* White acrylic sheet: $24 for 3 12"x12" sheets, so we will only count **$8** for this item in the BOM cost.
+* PCB manufacturing + shipping: $15 for 5 PCBs, so we will only count **$3** for this item in the BOM cost.
 
-**Total cost ~ $100**
+**Total cost ~ $74**
 
-While this isn't cheap, it is significantly more affordable than a commercial unit. For example, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. This should help you decide whether this project is worth the effort.
+While this isn't exactly "cheap", it is significantly more affordable than a commercial unit. For example, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. [Deep Sky Dad](https://deepskydad.com/) sells excellent _motorized_ flat panels, but they cost **$300** and up. This should help you decide whether this project is worth the effort.
 
 ## ASCOM Driver
 
@@ -152,7 +153,13 @@ The firmware was written specifically for, and tested with, an Adafruit Feather 
 
 ## Mechanical Components
 
-In the [`3D_Files/STL/`](3D_Files/STL/) folder, you will find STL files for a variety of telescopes. If you provide me with the thickness and outer diameter of your OTA (the dew shield in the case of a refractor), I can generate STL files for your own telescope and add them to that folder. Otherwise, you can use the FreeCAD model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)). Simply open the file in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will then be able to export your own STL files.
+If you are new to 3D modeling and 3D printing, take a look at [this video](https://www.youtube.com/watch?v=02CWCsGPJ-s) for a quick introduction.
+
+You will need to print a number of parts. Use the 3D model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)) to generate STL files for your telescope. Simply open the 3D model in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will then be able to export your own STL files.
+
+You will also need to cut the LGP and 2 diffusers. To do this properly, I strongly recommend using a router table. The FreeCAD model contains 3 router templates. Simply rough cut the component using a scroll saw (for example) and clean it up at the router table, using the appropriate template and a flush cut bit:
+
+![Router table](images/assembly/1-router-table.jpg)
 
 ## Electronic Circuit
 
@@ -201,8 +208,30 @@ The battery indicator LEDs protrude slightly on the other side of the control bo
 
 ## Assembling The Flat Panel
 
-TBD
+Solder flexible wires to the LED strip, and hot glue the connection (I used 5 minute epoxy) to ensure that they never work themselves loose... Then, install the LED strip into the body of the flat panel:
 
-## Using The Flat Panel With NINA
+![LED strip installed](images/assembly/2-LED-strip-installed.jpg)
 
-TBD
+Install the background sheet and the LGP. It should be difficult to fit the LGP! The diodes on the LED strip must contact the side of the LGP, so it is normal and expected that it is a tight fit. I had to use a tiny screwdriver to ever so slightly pry the LED strip so I could push the LGP down all the way. Take your time, this is one of the most difficult operations!
+
+![LGP installed](images/assembly/3-LGP-installed.jpg)
+
+Prepare the **internal diffuser**, which is made of a 3mm thick white acrylic sheet, and the spacer, and place them on top of the LGP:
+
+![Internal diffuser and spacer](images/assembly/4-internal-diffuser-and-spacer.jpg)
+
+Prepare the **external diffuser**, which you extracted from the Tayola Ceiling Light, and place it on top of the spacer:
+
+![External diffuser](images/assembly/5-external-diffuser.jpg)
+
+Place the front on top of the external diffuser:
+
+![External diffuser with front installed](images/assembly/6-external-diffuser-with-front.jpg)
+
+Install a JST connector for the LED leads, and connect the LED strip inside the control box:
+
+![Image showing how the LED strip is connected inside the control box](images/assembly/7-control-box-connected.jpg)
+
+**Note:** I used some foam padding to ensure that the battery was not going to move around.
+
+All you have left to do is to fasten the flat panel using M3 bolts, washers, and nuts.
