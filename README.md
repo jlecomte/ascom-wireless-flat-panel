@@ -57,6 +57,7 @@ TBD
 * A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather board! See note below...
 * [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) — We will take it apart to extract its background disk, Light Guiding Plate (LGP), and diffuser.
 * [3mm thick white acrylic sheet](https://www.amazon.com/dp/B083XQ2QS7) — We will use that to make the internal diffuser.
+* [Rocker switch ON/OFF](https://www.amazon.com/dp/B07XD8J2PL)
 * [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS)
 * [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q)
 
@@ -79,10 +80,11 @@ Assuming that you already own a 3D printer, some basic equipment (e.g., a solder
 * MOSFET: $10 for a pack of 10, so we will only count **$1** for this item in the BOM cost.
 * LiPo battery: **$12**
 * Taloya ceiling light: **$14**
+* Switch: $9 for a pack of 10, so we will only count **$1** for this item in the BOM cost.
 * White acrylic sheet: $24 for 3 12"x12" sheets, so we will only count **$8** for this item in the BOM cost.
 * PCB manufacturing + shipping: $15 for 5 PCBs, so we will only count **$3** for this item in the BOM cost.
 
-**Total cost ~ $74**
+**Total cost ~ $75**
 
 While this isn't exactly "cheap", it is significantly more affordable than a commercial unit. For example, PrimaLuceLab sells an excellent, albeit wired flat field generator named Giotto which, for a 6" refractor, costs **$315**. [Deep Sky Dad](https://deepskydad.com/) sells excellent _motorized_ flat panels, but they cost **$300** and up. This should help you decide whether this project is worth the effort.
 
@@ -155,9 +157,13 @@ The firmware was written specifically for, and tested with, an Adafruit Feather 
 
 If you are new to 3D modeling and 3D printing, take a look at [this video](https://www.youtube.com/watch?v=02CWCsGPJ-s) for a quick introduction.
 
-You will need to print a number of parts. Use the 3D model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)) to generate STL files for your telescope. Simply open the 3D model in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will then be able to export your own STL files.
+You will need to print a number of parts. Use the 3D model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)) to generate STL files for your telescope. Simply open the 3D model in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will be able to export your own STL files, which you can then import into your slicer of choice.
 
-You will also need to cut the LGP and 2 diffusers. To do this properly, I strongly recommend using a router table. The FreeCAD model contains 3 router templates. Simply rough cut the component using a scroll saw (for example) and clean it up at the router table, using the appropriate template and a flush cut bit:
+In order to achieve good uniformity, this panel has two diffusers. The 3mm thick internal diffuser is made from a white acrylic sheet, and is located right underneath the spacer / right above the LGP. The external diffuser was extracted from the Tayola ceiling light.
+
+To cut the LGP and the two diffusers cleanly and properly, I strongly recommend using a router table. The FreeCAD model contains 3 router templates, which you will need to print. Simply rough cut the component using a scroll saw (for example) and clean it up at the router table, using the appropriate template and a flush cut bit:
+
+![Scroll Saw](images/assembly/0-scroll-saw.jpg)
 
 ![Router table](images/assembly/1-router-table.jpg)
 
@@ -208,6 +214,10 @@ The battery indicator LEDs protrude slightly on the other side of the control bo
 
 ## Assembling The Flat Panel
 
+Please refer to this diagram to help you understand where the various components should be placed:
+
+![Assembly layout](images/assembly/assembly-layout.png)
+
 Solder flexible wires to the LED strip, and hot glue the connection (I used 5 minute epoxy) to ensure that they never work themselves loose... Then, install the LED strip into the body of the flat panel:
 
 ![LED strip installed](images/assembly/2-LED-strip-installed.jpg)
@@ -220,7 +230,7 @@ Prepare the **internal diffuser**, which is made of a 3mm thick white acrylic sh
 
 ![Internal diffuser and spacer](images/assembly/4-internal-diffuser-and-spacer.jpg)
 
-Prepare the **external diffuser**, which you extracted from the Tayola Ceiling Light, and place it on top of the spacer:
+Prepare the **external diffuser**, which you extracted from the Tayola ceiling light, and place it on top of the spacer:
 
 ![External diffuser](images/assembly/5-external-diffuser.jpg)
 
