@@ -13,12 +13,11 @@
 * [Arduino Firmware](#arduino-firmware)
   + [Microcontroller Compatibility](#microcontroller-compatibility)
   + [Compiling And Uploading The Firmware](#compiling-and-uploading-the-firmware)
-* [Mechanical Components](#mechanical-components)
 * [Electronic Circuit](#electronic-circuit)
   + [Schematics](#schematics)
   + [Breadboard Prototyping](#breadboard-prototyping)
   + [PCB](#pcb)
-* [Assembling The Flat Panel](#assembling-the-flat-panel)
+* [Mechanical Components And Assembly](#mechanical-components-and-assembly)
 * [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 
 ## Introduction
@@ -152,20 +151,6 @@ The firmware was written specifically for, and tested with, an Adafruit Feather 
 * Please, follow the [Arduino IDE setup steps](https://learn.adafruit.com/introducing-the-adafruit-nrf52840-feather/arduino-bsp-setup) published by Adafruit.
 * Then, connect your Adafruit Feather nRF52840 Express board to your computer using a micro USB cable, open the sketch file located at `Arduino_Firmware\Arduino_Firmware.ino`, and click on the `Upload` button in the toolbar.
 
-## Mechanical Components
-
-If you are new to 3D modeling and 3D printing, take a look at [this video](https://www.youtube.com/watch?v=02CWCsGPJ-s) for a quick introduction.
-
-You will need to print a number of parts. Use the 3D model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)) to generate STL files for your telescope. Simply open the 3D model in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will be able to export your own STL files, which you can then import into your slicer of choice.
-
-In order to achieve good uniformity, this panel has two diffusers. The 3mm thick internal diffuser is made from a white acrylic sheet, and is located right underneath the spacer / right above the LGP. The external diffuser was extracted from the Tayola ceiling light.
-
-To cut the LGP and the two diffusers cleanly and properly, I strongly recommend using a router table. The FreeCAD model contains 3 router templates, which you will need to print. Simply rough cut the component using a scroll saw (for example) and clean it up at the router table, using the appropriate template and a flush cut bit:
-
-![Scroll Saw](images/assembly/0-scroll-saw.jpg)
-
-![Router table](images/assembly/1-router-table.jpg)
-
 ## Electronic Circuit
 
 I included a [KiCad](https://www.kicad.org/) project in the `KiCad_Project/` directory.
@@ -211,7 +196,19 @@ The battery indicator LEDs protrude slightly on the other side of the control bo
 
 ![Control box showing the protruding battery indicator LEDs](images/control-box-1.jpg)
 
-## Assembling The Flat Panel
+## Mechanical Components And Assembly
+
+If you are new to 3D modeling and 3D printing, take a look at [this video](https://www.youtube.com/watch?v=02CWCsGPJ-s) for a quick introduction.
+
+You will need to print a number of parts. Use the 3D model I included in this repository ([`3D_Files/FreeCAD_Model.FCStd`](3D_Files/FreeCAD_Model.FCStd)) to generate STL files for your telescope. Simply open the 3D model in the most recent version of FreeCAD, click on the `Parameters` spreadsheet, and modify the OTA diameter and thickness values. The parametric model will automatically adapt to those values, and you will be able to export your own STL files, which you can then import into your slicer of choice.
+
+In order to achieve good uniformity, this panel has two diffusers. The 3mm thick internal diffuser is made from a white acrylic sheet, and is located right underneath the spacer / right above the LGP. The external diffuser was extracted from the Tayola ceiling light.
+
+To cut the LGP and the two diffusers cleanly and properly, I strongly recommend using a router table. The FreeCAD model contains 3 router templates, which you will need to print. Simply rough cut the component using a scroll saw (for example) and clean it up at the router table, using the appropriate template and a flush cut bit:
+
+![Scroll Saw](images/assembly/0-scroll-saw.jpg)
+
+![Router table](images/assembly/1-router-table.jpg)
 
 Please refer to this diagram to help you understand where the various components should be placed:
 
