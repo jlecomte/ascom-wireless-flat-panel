@@ -2,6 +2,7 @@
 
 * [Introduction](#introduction)
 * [Finished Product](#finished-product)
+* [User Manual](#user-manual)
 * [Introduction Video](#introduction-video)
 * [Pre-Requisites](#pre-requisites)
 * [Hardware](#hardware)
@@ -9,7 +10,6 @@
 * [ASCOM Driver](#ascom-driver)
   + [Downloading And Installing The Driver](#downloading-and-installing-the-driver)
   + [Compiling The Driver (For Developers Only)](#compiling-the-driver-for-developers-only)
-  + [Screenshots And User Manual](#screenshots-and-user-manual)
 * [Arduino Firmware](#arduino-firmware)
   + [Microcontroller Compatibility](#microcontroller-compatibility)
   + [Compiling And Uploading The Firmware](#compiling-and-uploading-the-firmware)
@@ -30,9 +30,29 @@ This project is the second iteration of my original DIY [ASCOM-compatible flat p
 
 ![Finished product: bottom of the wireless flat panel](images/finished-product-2.jpg)
 
-## Introduction Video
+## User Manual
 
-TBD
+Upon turning on the device, the indicator LEDs will show the battery voltage status. After 5 seconds, only the red LED will remain in use, indicating whether a device is currently connected: it will be solid on if a device is connected, or it will continuously blink otherwise.
+
+Before you can connect to the wireless flat panel for the first time, you must select the appropriate device and open the device settings dialog. Here is what that looks like in N.I.N.A.:
+
+![Device selection and opening the device settings dialog](images/screenshot-1.png)
+
+In the device settings dialog, you must then select the appropriate Bluetooth device. The driver will remember your selection, so this is a one-time operation. This step is necessary to ensure that, in the field, where there may be several such wireless flat panels nearby, you are connecting and controlling the right device. Here is what the driver settings dialog looks like the first time you open it. It listens for Bluetooth advertisement packets coming from wireless flat panel devices only.
+
+![Device settings dialog with no device selected](images/screenshot-2.png)
+
+Of course, the Bluetooth address will be meaningless to you, but that is not important. Click on a Bluetooth address, and click on the "Pair with selected device" button:
+
+![Device settings dialog with device selected](images/screenshot-3.png)
+
+**Note:** This is not really Bluetooth pairing. It is merely device selection. But most users are familiar with the "Bluetooth pairing" terminology, so I used it, even if it is not perfectly accurate from a technical point of view.
+
+Don't forget to validate your choice by clicking on the green checkmark button at the bottom of the device settings dialog! (otherwise, your selection will not be taken into account)
+
+If you do this at home with only one wireless flat panel turned on, you should see only one Bluetooth address in the list, so that's easy. However, if you do this in the field, and there is another wireless flat panel nearby, you may see several Bluetooth addresses. Choose one, connect to it, and turn it on/off to identify which device you are connected to. If you happen to select the wrong device, disconnect from it, open the driver settings dialog again, and choose another Bluetooth address (you will have remembered the Bluetooth address you connected to on the first try...) Simple! Of course, it's easier to do this at home when there is only one device showing in the list... Once the right device has been selected, you can finally connect to it:
+
+![Wireless flat panel connected](images/screenshot-4.png)
 
 ## Pre-Requisites
 
@@ -117,28 +137,6 @@ Types registered successfully
 ### Compiling The Driver (For Developers Only)
 
 Open Microsoft Visual Studio as an administrator (right click on the Microsoft Visual Studio shortcut, and select "Run as administrator"). This is required because when building the code, by default, Microsoft Visual Studio will register the compiled COM components, and this operation requires special privileges (Note: This is something you can disable in the project settings...) Then, open the solution (`ASCOM_Driver\ASCOM.DarkSkyGeek.WirelessFlatPanel.sln`), change the solution configuration to `Release` (in the toolbar), open the `Build` menu, and click on `Build Solution`. As long as you have properly installed all the required dependencies, the build should succeed and the ASCOM driver will be registered on your system. The binary file generated will be `ASCOM_Driver\bin\Release\ASCOM.DarkSkyGeek.WirelessFlatPanel.dll`. You may also download this file from the [Releases page](https://github.com/jlecomte/ascom-wireless-flat-panel/releases).
-
-### Screenshots And User Manual
-
-Before you can connect to the wireless flat panel for the first time, you must select the appropriate device and open the device settings dialog. Here is what that looks like in N.I.N.A.:
-
-![Device selection and opening the device settings dialog](images/screenshot-1.png)
-
-In the device settings dialog, you must then select the appropriate Bluetooth device. The driver will remember your selection, so this is a one-time operation. This step is necessary to ensure that, in the field, where there may be several such wireless flat panels nearby, you are connecting and controlling the right device. Here is what the driver settings dialog looks like the first time you open it. It listens for Bluetooth advertisement packets coming from wireless flat panel devices only.
-
-![Device settings dialog with no device selected](images/screenshot-2.png)
-
-Of course, the Bluetooth address will be meaningless to you, but that is not important. Click on a Bluetooth address, and click on the "Pair with selected device" button:
-
-![Device settings dialog with device selected](images/screenshot-3.png)
-
-**Note:** This is not really Bluetooth pairing. It is merely device selection. But most users are familiar with the "Bluetooth pairing" terminology, so I used it, even if it is not perfectly accurate from a technical point of view.
-
-Don't forget to validate your choice by clicking on the green checkmark button at the bottom of the device settings dialog! (otherwise, your selection will not be taken into account)
-
-If you do this at home with only one wireless flat panel turned on, you should see only one Bluetooth address in the list, so that's easy. However, if you do this in the field, and there is another wireless flat panel nearby, you may see several Bluetooth addresses. Choose one, connect to it, and turn it on/off to identify which device you are connected to. If you happen to select the wrong device, disconnect from it, open the driver settings dialog again, and choose another Bluetooth address (you will have remembered the Bluetooth address you connected to on the first try...) Simple! Of course, it's easier to do this at home when there is only one device showing in the list... Once the right device has been selected, you can finally connect to it:
-
-![Wireless flat panel connected](images/screenshot-4.png)
 
 ## Arduino Firmware
 
