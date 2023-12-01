@@ -48,6 +48,17 @@ const uint32_t LED_TOKEN = 0x004c4544; // LED in ASCII :)
 
 HardwarePWM *pwm = NULL;
 
+// The mode we are in, which controls the behavior of the indicator LEDs.
+// Defaults to BATTERY_INDICATOR when the device is turned on.
+enum Mode {
+  BATTERY_INDICATOR,
+  DEVICE_CONNECTED,
+  DEVICE_DISCONNECTED
+} mode = BATTERY_INDICATOR;
+
+// Variable used to blink the red LED to indicate that no device is currently connected.
+bool deviceConnectedLED_ON = false;
+
 void setup() {
 #ifdef DEBUG
   Serial.begin(9600);
@@ -175,6 +186,8 @@ bool configurePinPWM() {
 
 void connect_callback(uint16_t conn_handle)
 {
+  mode = DEVICE_CONNECTED;
+
   if (Serial) {
     BLEConnection* connection = Bluefruit.Connection(conn_handle);
 
@@ -195,6 +208,8 @@ void connect_callback(uint16_t conn_handle)
 
 void disconnect_callback(uint16_t conn_handle, uint8_t reason)
 {
+  mode = DEVICE_DISCONNECTED;
+
   // Reset the value for the characteristic. It does not invoke the write
   // callback, so we "manually" turn off the LED strip as well...
   calibratorCharacteristic.write16(MIN_BRIGHTNESS);
@@ -241,17 +256,54 @@ void format_ble_addr(uint8_t* addr, char *s)
 
 void loop()
 {
-  // Code snippet from Adafruit website to measure the battery voltage
-  float measuredvbat = analogRead(VBATPIN);
-  measuredvbat *= 2;    // we divided by 2, so multiply back
-  measuredvbat *= 3.6;  // Multiply by 3.6V, our reference voltage
-  measuredvbat /= 1024; // convert to voltage
+  switch (mode) {
+    case BATTERY_INDICATOR:
+      // We remain in the BATTERY_INDICATOR mode for only 5 seconds because:
+      // 1) Those bright LEDs will be obnoxious at a dark site!
+      // 2) We can use the red LED to indicate whether a device is connected, which can be useful.
+      if (millis() < 5000) {
+        // Code snippet from Adafruit website to measure the battery voltage
+        float measuredvbat = analogRead(VBATPIN);
+        measuredvbat *= 2;    // we divided by 2, so multiply back
+        measuredvbat *= 3.6;  // Multiply by 3.6V, our reference voltage
+        measuredvbat /= 1024; // convert to voltage
 
-  // Update our battery voltage indicator LEDs:
-  digitalWrite(VBATLED1, measuredvbat > 3.2 ? HIGH : LOW);
-  digitalWrite(VBATLED2, measuredvbat > 3.4 ? HIGH : LOW);
-  digitalWrite(VBATLED3, measuredvbat > 3.6 ? HIGH : LOW);
-  digitalWrite(VBATLED4, measuredvbat > 3.8 ? HIGH : LOW);
+        // Update our battery voltage indicator LEDs:
+        digitalWrite(VBATLED1, measuredvbat > 3.2 ? HIGH : LOW);
+        digitalWrite(VBATLED2, measuredvbat > 3.4 ? HIGH : LOW);
+        digitalWrite(VBATLED3, measuredvbat > 3.6 ? HIGH : LOW);
+        digitalWrite(VBATLED4, measuredvbat > 3.8 ? HIGH : LOW);
 
-  delay(1000);
+        // (nit) This is to ensure the blinking starts as soon as the
+        // state changes, without incurring an odd 0.5 second delay:
+        deviceConnectedLED_ON = measuredvbat > 3.2;
+
+        break;
+      }
+
+      mode = DEVICE_DISCONNECTED;
+
+      digitalWrite(VBATLED2, LOW);
+      digitalWrite(VBATLED3, LOW);
+      digitalWrite(VBATLED4, LOW);
+
+      // Intentional fallthrough...
+
+    case DEVICE_DISCONNECTED:
+      // Blink red LED:
+      deviceConnectedLED_ON = !deviceConnectedLED_ON;
+      digitalWrite(VBATLED1, deviceConnectedLED_ON ? HIGH : LOW);
+      break;
+
+    case DEVICE_CONNECTED:
+      // Turn red LED on:
+      digitalWrite(VBATLED1, HIGH);
+
+      // (nit) This is to ensure the blinking starts as soon as the
+      // state changes, without incurring an odd 0.5 second delay:
+      deviceConnectedLED_ON = true;
+      break;
+  }
+
+  delay(500);
 }
