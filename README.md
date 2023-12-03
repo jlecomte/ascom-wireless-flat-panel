@@ -3,7 +3,6 @@
 * [Introduction](#introduction)
 * [Finished Product](#finished-product)
 * [User Manual](#user-manual)
-* [Introduction Video](#introduction-video)
 * [Pre-Requisites](#pre-requisites)
 * [Hardware](#hardware)
 * [Bill Of Material](#bill-of-material)
