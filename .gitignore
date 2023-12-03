@@ -358,3 +358,6 @@ __vm/
 # FreeCAD backup files
 *.FCStd1
 *.FCBak
+
+# Inno Setup Installer
+Installer/*.exe
