@@ -230,3 +230,7 @@ All you have left to do is to fasten the flat panel using M3 bolts, washers, and
 **Question:** Is this panel uniform enough?
 
 **Answer:** Absolutely! Please refer to [my evaluation of the uniformity of this panel](https://github.com/jlecomte/circular-led-flat-panel-evaluation) for more information.
+
+**Question:** My antivirus identifies your setup executable file as a malware (some kind of Trojan)
+
+**Answer:** This is a false detection, extremely common with installers created with [Inno Setup](https://jrsoftware.org/isinfo.php) because virus and malware authors also use Inno Setup to distribute their malicious payload... Anyway, there isn't much I can do about this, short of signing the executable. Unfortunately, that would require a code signing certificate, which costs money. So, even though the executable I uploaded to GitHub is perfectly safe, use at your own risk!
