@@ -223,6 +223,10 @@ All you have left to do is to fasten the flat panel using M3 bolts, washers, and
 
 **Answer:** Nope. Not interested.
 
+**Question:** I am stuck. Can you help me?
+
+**Answer:** I will do my best, but I do not provide any guarantee. Please, [file an issue](https://github.com/jlecomte/ascom-wireless-flat-panel/issues).
+
 **Question:** Can you incorporate your DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover) into this project?
 
 **Answer:** I am not interested in consolidating this project with my DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover) because, in my case, it would add too much weight to the front of my already front-heavy OTA, making it more difficult to balance, and causing all kinds of issues with the camera possibly hitting the tripod legs since the OTA would have to be moved back to provide proper balance. If you have a fully remote setup, I recommend looking at the excellent motorized flat panels sold by [Deep Sky Dad](https://deepskydad.com/). Otherwise, you can use a large and affordable LED tracing panel, which you can easily find on Amazon. Modify it to be ASCOM-compatible (see [this CloudyNights article](https://www.cloudynights.com/topic/536533-diy-alnitak-flat-panel/)), and position it vertically. Then, simply slew the telescope to it (the telescope will be in a horizontal position). Most modern Go-To mounts support storing several custom positions, so that makes it even easier! Anyway, you have a few options...
