@@ -225,11 +225,11 @@ All you have left to do is to fasten the flat panel using M3 bolts, washers, and
 
 **Question:** Can you make this for me? I'll pay for it!
 
-**Answer:** Nope. Not interested.
+**Answer:** I really wish I could. Unfortunately, I do not have the time necessary to manufacture this product for a large number of people.
 
-**Question:** I am stuck. Can you help me?
+**Question:** OK, I decided to build it, but I am stuck. Can you help me?
 
-**Answer:** I will do my best, but I do not provide any guarantee. Please, [file an issue](https://github.com/jlecomte/ascom-wireless-flat-panel/issues).
+**Answer:** I will do my best, but I cannot provide any guarantee. Please, [file an issue](https://github.com/jlecomte/ascom-wireless-flat-panel/issues).
 
 **Question:** Can you incorporate your DIY [ASCOM-compatible telescope cover](https://github.com/jlecomte/ascom-telescope-cover) into this project?
 
