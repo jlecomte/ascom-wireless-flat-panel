@@ -106,6 +106,7 @@ Assuming that you already own a 3D printer, some basic equipment (e.g., a solder
 * Switch: $9 for a pack of 10, so we will only count **$1** for this item in the BOM cost.
 * White acrylic sheet: $24 for 3 12"x12" sheets, so we will only count **$8** for this item in the BOM cost.
 * PCB manufacturing + shipping: $15 for 5 PCBs, so we will only count **$3** for this item in the BOM cost.
+* Miscellaneous: JST connectors, capacitor, resistors, etc. These are so cheap that they do not contribute much to the BOM cost.
 
 **Total cost ~ $75**
 
