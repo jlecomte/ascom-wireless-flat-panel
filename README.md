@@ -240,6 +240,10 @@ All you have left to do is to fasten the flat panel using M3 bolts, washers, and
 
 **Answer:** Absolutely! Please refer to [my evaluation of the uniformity of this panel](https://github.com/jlecomte/circular-led-flat-panel-evaluation) for more information.
 
+**Question:** Is this compatible with ZWO's ASIAir?
+
+**Answer:** Unfortunately, no. As far as I know, ASIAir does not support ASCOM-compatible flat panels of any kind. That is because ASIAir is a closed ecosystem, and it is not possible to install additional drivers on an ASIAir unit. Additionally, ASIAir is based on the INDI platform, and I have not released an INDI driver for this device.
+
 **Question:** My antivirus identifies your setup executable file as a malware (some kind of Trojan)
 
 **Answer:** This is a false detection, extremely common with installers created with [Inno Setup](https://jrsoftware.org/isinfo.php) because virus and malware authors also use Inno Setup to distribute their malicious payload... Anyway, there isn't much I can do about this, short of signing the executable. Unfortunately, that would require a code signing certificate, which costs money. So, even though the executable I uploaded to GitHub is perfectly safe, use at your own risk!
