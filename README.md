@@ -82,6 +82,7 @@ If you do this at home with only one wireless flat panel turned on, you should s
 * [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS)
 * [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q)
 * [Assortment of JST-XH connectors](https://www.amazon.com/dp/B01MCZE2HM)
+* [Assortment of electrolytic capacitors](https://www.amazon.com/dp/B07PBQXQNQ)
 
 The following items are technically optional, but highly recommended:
 
