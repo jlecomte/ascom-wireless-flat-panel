@@ -168,7 +168,9 @@ And here is a rendering of the various PCB layers:
 
 ![Copper traces layout](images/PCB-routing.jpg)
 
-I exported the Gerber files so that you can have the board manufactured by PCBWay (download the Gerber files [here](KiCad_Project/PCBWay.zip)). If you want to work with another PCB manufacturer, you will need to open the KiCad project and export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer. They all have slightly different requirements...
+I exported the Gerber files so that you can have the board manufactured by PCBWay (download the Gerber files for PCBWay [here](KiCad_Project/PCBWay.zip)). When you create your order with PCBWay, keep all the defaults, and set the board size to 66.5mm x 51.3mm. To keep the cost down, select the cheapest shipping method (to ship to the US, I select USPS) and consider doing a "group buy" with other people.
+
+If you want to work with another PCB manufacturer, you will need to open the KiCad project and export the PCB layout to Gerber files. Please, follow the instructions of your PCB manufacturer. They all have slightly different requirements...
 
 Here is a photograph of the control box, which hosts the PCB, after soldering all the components. Note how the switch has been wired.
 
