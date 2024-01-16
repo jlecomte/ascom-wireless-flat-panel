@@ -25,7 +25,9 @@ I do not charge anything to create and maintain these open-source projects. But 
 
 ## Introduction
 
-This project is the second iteration of my original DIY [ASCOM-compatible flat panel](https://github.com/jlecomte/ascom-flat-panel). It brings a major usability improvement over the first version: It is completely wireless! (whereas the first version relied on a USB type C and a 12V DC cable...) which makes it even easier to use, especially in the dark! It also has a finer brightness scale (1024 levels as opposed to 256)
+This project is the second iteration of my original DIY [ASCOM-compatible flat panel](https://github.com/jlecomte/ascom-flat-panel). It brings a major usability improvement over the first version: It is completely wireless! (whereas the first version relied on a USB type C and a 12V DC cable...) which makes it even easier to use, especially in the dark! It has several other enhancements compared to the original version, and I invite you to check out this video to find out more:
+
+[![YouTube video talking about this flat panel](images/youtube-thumbnail.jpg)](https://www.youtube.com/watch?v=POvcBwyBBEU)
 
 ## Finished Product
 
