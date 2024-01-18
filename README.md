@@ -73,25 +73,25 @@ If you do this at home with only one wireless flat panel turned on, you should s
 ## Hardware
 
 * [Adafruit Feather nRF52840 Express](https://www.adafruit.com/product/4062)
-* [Natural white 5V LED strip](https://www.amazon.com/dp/B08H51D8QV)
-* [FQP30N06L](https://www.amazon.com/dp/B07WHSD3GJ) (logic-level MOSFET)
-* An assortment of 1/4W resistors ([example](https://www.amazon.com/dp/B08FD1XVL6))
-* An assortment of colored 5mm LEDs ([example](https://www.amazon.com/dp/B09XDMJ6KY))
-* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather board! See note below...
-* [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1) — We will take it apart to extract its background disk, Light Guiding Plate (LGP), and diffuser. If you are outside the US and cannot find this item, look for an LED ceiling light on AliExpress ([Here](https://www.aliexpress.us/item/3256804883844716.html) is one that *may* work, I have not verified it) If you go with a different option than the one I selected, you will likely have to make changes to the project, for which I will not be able to support you.
-* [3mm thick white acrylic sheet](https://www.amazon.com/dp/B083XQ2QS7) — We will use that to make the internal diffuser.
-* [Rocker switch ON/OFF](https://www.amazon.com/dp/B07XD8J2PL)
-* [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS)
-* [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q)
+* [Natural white 5V LED strip](https://www.amazon.com/dp/B08H51D8QV?tag=darkskygeek-20)
+* [FQP30N06L](https://www.amazon.com/dp/B07WHSD3GJ?tag=darkskygeek-20) (logic-level MOSFET)
+* An assortment of 1/4W resistors ([example](https://www.amazon.com/dp/B08FD1XVL6?tag=darkskygeek-20))
+* An assortment of colored 5mm LEDs ([example](https://www.amazon.com/dp/B09XDMJ6KY?tag=darkskygeek-20))
+* A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87?tag=darkskygeek-20)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather board! See note below...
+* [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1?tag=darkskygeek-20) — We will take it apart to extract its background disk, Light Guiding Plate (LGP), and diffuser. If you are outside the US and cannot find this item, look for an LED ceiling light on AliExpress ([Here](https://www.aliexpress.us/item/3256804883844716.html) is one that *may* work, I have not verified it) If you go with a different option than the one I selected, you will likely have to make changes to the project, for which I will not be able to support you.
+* [3mm thick white acrylic sheet](https://www.amazon.com/dp/B083XQ2QS7?tag=darkskygeek-20) — We will use that to make the internal diffuser.
+* [Rocker switch ON/OFF](https://www.amazon.com/dp/B07XD8J2PL?tag=darkskygeek-20)
+* [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS?tag=darkskygeek-20)
+* [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q?tag=darkskygeek-20)
 * 50mm-long M3 bolts, which you can buy from your local home center or from [McMaster-Carr](https://www.mcmaster.com/products/screws/system-of-measurement~metric/thread-size~m3/fastener-head-type~socket/material~stainless-steel-2/length~50-mm/)
-* [Assortment of JST-XH connectors](https://www.amazon.com/dp/B01MCZE2HM)
-* [Assortment of electrolytic capacitors](https://www.amazon.com/dp/B07PBQXQNQ)
+* [Assortment of JST-XH connectors](https://www.amazon.com/dp/B01MCZE2HM?tag=darkskygeek-20)
+* [Assortment of electrolytic capacitors](https://www.amazon.com/dp/B07PBQXQNQ?tag=darkskygeek-20)
 
 The following items are technically optional, but highly recommended:
 
-* [Bench Power Supply](https://www.amazon.com/dp/B07GCJ5QHF)
-* [Solderless Breadboard](https://www.amazon.com/gp/product/B07LG9V8WQ)
-* [Solderless LED strip connectors](https://www.amazon.com/dp/B0BLCQXSXH) — Useful for testing, but cannot be used in the finished product without making changes to the 3D model.
+* [Bench Power Supply](https://www.amazon.com/dp/B07GCJ5QHF?tag=darkskygeek-20)
+* [Solderless Breadboard](https://www.amazon.com/gp/product/B07LG9V8WQ?tag=darkskygeek-20)
+* [Solderless LED strip connectors](https://www.amazon.com/dp/B0BLCQXSXH?tag=darkskygeek-20) — Useful for testing, but cannot be used in the finished product without making changes to the 3D model.
 
 **Important note about the LED strip:** Pick a "natural white" LED strip. Stay away from "warm white" because you will run into some problems with your OIII filter (it does not emit enough in the blue part of the spectrum) or "cool white" because you will have similar issues, but with the H⍺ or SII filters (it does not emit enough in the red part of the spectrum). Also, stay away from so-called "high density" LED strips, they are simply too bright for our application. And finally, note that most LED strips require 12V DC, but in this project, we need one that can be powered with 5V DC. Actually, we are going to power the LED strip using 3.3V DC so that it is not too bright for our application.
 
