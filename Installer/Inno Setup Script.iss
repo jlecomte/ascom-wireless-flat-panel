@@ -5,7 +5,7 @@
 
 [Setup]
 AppId={{76261D3F-3384-41E8-9253-1E6192BC573E}
-AppName={#MyAppPublisher}’s {#MyAppName}
+AppName={#MyAppPublisher}'s {#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
