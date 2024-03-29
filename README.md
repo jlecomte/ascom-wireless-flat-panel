@@ -21,6 +21,8 @@ I do not charge anything to create and maintain these open-source projects. But 
   + [Breadboard Prototyping](#breadboard-prototyping)
   + [PCB](#pcb)
 * [Mechanical Components And Assembly](#mechanical-components-and-assembly)
+* [Troubleshooting](#troubleshooting)
+  + [Changing the 3D model parameters to fit small telescopes](#changing-the-3d-model-parameters-to-fit-small-telescopes)
 * [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 
 ## Introduction
@@ -228,6 +230,12 @@ Install a JST connector for the LED leads, and connect the LED strip inside the 
 **Note:** I used some foam padding to ensure that the battery was not going to move around.
 
 All you have left to do is to fasten the flat panel using M3 bolts, washers, and nuts.
+
+## Troubleshooting
+
+### Changing the 3D model parameters to fit small telescopes
+
+If you open the 3D model in FreeCAD and update the `OTA Outside Diameter` parameter to fit a much smaller telescope than this panel was originally designed for, you may get a `Recompute failed` error. This is because the minimum size of the panel is dictated by the length of the PCB. To fix this, set the `OTA Outside Diameter` parameter to a value larger than what you actually need, e.g., `130mm`, and increase the `OTA Thickness` parameter to a much larger value, e.g., `50mm` (in FreeCAD, you can make measurements using the `Draft` workbench to ensure that you have the proper value before printing any of the parts). The panel will be larger than what you actually need, but it will work. Play with the parameters and find what works for you.
 
 ## Frequently Asked Questions (FAQ)
 
