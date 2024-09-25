@@ -81,7 +81,7 @@ If you do this at home with only one wireless flat panel turned on, you should s
 * An assortment of colored 5mm LEDs ([example](https://www.amazon.com/dp/B09XDMJ6KY?tag=darkskygeek-20))
 * A small LiPo battery with a JST-PH 2mm connector ([example](https://www.amazon.com/gp/product/B07BTV3W87?tag=darkskygeek-20)) — The polarity of the connector may be incorrect, so be careful or you may fry the expensive Adafruit Feather board! See note below...
 * [Taloya LED Flush Mount Ceiling Light](https://www.amazon.com/dp/B08GX81JB1?tag=darkskygeek-20) — We will take it apart to extract its background disk, Light Guiding Plate (LGP), and diffuser. If you are outside the US and cannot find this item, look for an LED ceiling light on AliExpress ([Here](https://www.aliexpress.us/item/3256804883844716.html) is one that *may* work, I have not verified it) If you go with a different option than the one I selected, you will likely have to make changes to the project, for which I will not be able to support you.
-* [3mm thick white acrylic sheet](https://www.amazon.com/dp/B083XQ2QS7?tag=darkskygeek-20) — We will use that to make the internal diffuser.
+* [3mm thick white acrylic sheet](https://www.amazon.com/dp/B0D2GTXJR1?tag=darkskygeek-20) — We will use that to make the internal diffuser.
 * [Rocker switch ON/OFF](https://www.amazon.com/dp/B07XD8J2PL?tag=darkskygeek-20)
 * [Brass inserts for 3D printed parts](https://www.amazon.com/dp/B0BXD1YMNS?tag=darkskygeek-20)
 * [Assortment of small metric screws, nuts, and washers](https://www.amazon.com/dp/B08JCKH31Q?tag=darkskygeek-20)
